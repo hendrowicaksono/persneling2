@@ -71,3 +71,8 @@ $koleksi->collection_save($data);
 
 ```
 Done, data sudah masuk ke SLiMS. Silahkan mencoba.
+
+NB: oiya, API ini didevelop dengan mencoba merekonstruksi struktur database SLiMS melalui schema.xml. Jadi kalau mau nyoba ini silahkan jalankan:
+jalankan: vendor/propel/propel/bin/propel sql:insert
+
+Jangan lupa buat dulu database dengan kolasi utf8-mb4. Sesuaikan koneksi pada file src/props/local/propel.yml.
