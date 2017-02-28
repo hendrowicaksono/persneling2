@@ -1,0 +1,33 @@
+{
+
+  "name": "hendrowicaksono/persneling2",
+  "type": "library",
+  "description": "API framework for SLiMS based on Propel ORM",
+  "keywords": ["framework"],
+  "homepage": "https://github.com/slims",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hendro Wicaksono",
+      "email": "hendrowicaksono@gmail.com"
+    },
+    {
+      "name": "SLiMS Developers Community",
+      "homepage": "https://github.com/slims"
+    }
+  ],
+
+  "autoload": {
+    "psr-4": {
+      "Slims\\":"src/"
+    },
+    "classmap": ["src/props/local/generated-classes/"]
+  },
+
+  "minimum-stability": "stable",
+
+
+  "require": {
+    "propel/propel": "~2.0@dev"
+  }
+}

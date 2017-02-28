@@ -1,0 +1,10 @@
+propel:
+    database:
+        connections:
+            slims:
+                adapter: mysql
+                dsn: mysql:host=localhost;port=3306;dbname=slims
+                user: root
+                password: passwordrahasia
+                settings:
+                    charset: utf8mb4

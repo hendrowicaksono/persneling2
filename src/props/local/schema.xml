@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="slims" defaultIdMethod="native" namespace="Slims\Models">
+  <table name="biblio" phpName="Biblio" namespace="Bibliography\Biblio">
+    <column name="biblio_id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="title" type="longvarchar" required="true" phpName="Title"/>
+    <column name="sor" type="varchar" size="200" required="false" phpName="Sor"/>
+    <column name="edition" type="varchar" size="50" required="false" phpName="Edition"/>
+    <column name="isbn_issn" type="varchar" size="20" required="false" phpName="Isbn_issn"/>
+    <column name="publisher_id" type="integer" required="false"/>
+    <column name="publish_year" type="varchar" size="20" required="false" phpName="Publish_year"/>
+    <column name="collation" type="varchar" size="50" required="false" phpName="Collation"/>
+    <column name="series_title" type="varchar" size="200" required="false" phpName="Series_title"/>
+    <column name="call_number" type="varchar" size="50" required="false" phpName="Call_number"/>
+    <column name="language_id" type="char" size="5" required="false"/>
+    <column name="source" type="varchar" size="3" required="false" phpName="Source"/>
+    <column name="publish_place_id" type="integer" required="false"/>
+    <column name="classification" type="varchar" size="40" required="false" phpName="Classification"/>
+    <column name="notes" type="longvarchar" required="false" phpName="Notes"/>
+    <column name="image" type="varchar" size="100" required="false" phpName="Image"/>
+    <column name="file_att" type="varchar" size="255" required="false" phpName="File_att"/>
+    <column name="opac_hide" type="smallint" size="3" required="false" phpName="Opac_hide"/>
+    <column name="promoted" type="smallint" size="3" required="false" phpName="Promoted"/>
+    <column name="labels" type="longvarchar" required="false" phpName="Labels"/>
+    <column name="frequency_id" type="integer" required="false"/>
+    <column name="spec_detail_info" type="longvarchar" required="false" phpName="Spec_detail_info"/>
+    <column name="input_date" type="timestamp" required="false" phpName="Input_date"/>
+    <column name="last_update" type="timestamp" required="false" phpName="Last_update"/>
+    <column name="uid" type="integer" required="false"/>
+    <foreign-key foreignTable="mst_publisher" phpName="Publisher" refPhpName="Biblio">
+      <reference local="publisher_id" foreign="publisher_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_language" phpName="Language" refPhpName="Biblio">
+      <reference local="language_id" foreign="language_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_place" phpName="Place" refPhpName="Biblio">
+      <reference local="publish_place_id" foreign="place_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_frequency" phpName="Frequency" refPhpName="Biblio">
+      <reference local="frequency_id" foreign="frequency_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="user" phpName="User" refPhpName="Biblio">
+      <reference local="uid" foreign="user_id"/>
+    </foreign-key>
+  </table>
+
+  <table name="mst_publisher" phpName="Publisher" namespace="Masterfile\Publisher">
+    <column name="publisher_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="publisher_name" type="varchar" size="100" required="true" phpName="Publisher_name"/>
+  </table>
+  <table name="mst_language" phpName="Language" namespace="Masterfile\Language">
+    <column name="language_id" type="char" size="5" required="true" primaryKey="true" />
+    <column name="language_name" type="varchar" size="20" required="true" phpName="Language_name"/>
+  </table>
+  <table name="mst_place" phpName="Place" namespace="Masterfile\Place">
+    <column name="place_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="place_name" type="varchar" size="30" required="true" phpName="Place_name"/>
+  </table>
+  <table name="mst_frequency" phpName="Frequency" namespace="Masterfile\Frequency">
+    <column name="frequency_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="frequency" type="varchar" size="25" required="true" phpName="Frequency"/>
+    <column name="language_prefix" type="varchar" size="5" required="false" phpName="Language_prefix"/>
+    <column name="time_increment" type="smallint" size="6" required="false" phpName="Time_increment"/>
+    <column name="time_unit" type="varchar" size="25" required="false" phpName="Time_unit"/>
+    <column name="input_date" type="timestamp" required="false" phpName="Input_date"/>
+    <column name="last_update" type="timestamp" required="false" phpName="Last_update"/>
+  </table>
+  <table name="user" phpName="User" namespace="System\User">
+    <column name="user_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="username" type="varchar" size="50" required="true" phpName="Username"/>
+    <column name="realname" type="varchar" size="100" required="true" phpName="Realname"/>
+    <column name="password" type="varchar" size="35" required="true" phpName="Password"/>
+    <column name="email" type="varchar" size="200" required="false" phpName="Email"/>
+    <column name="user_type" type="smallint" size="2" required="false" phpName="User_type"/>
+    <column name="user_image" type="varchar" size="250" required="false" phpName="User_image"/>
+    <column name="social_media" type="longvarchar" required="false" phpName="Social_media"/>
+    <column name="last_login" type="timestamp" required="false" phpName="Last_login"/>
+    <column name="last_login_ip" type="varchar" size="15" required="false" phpName="Last_login_ip"/>
+    <column name="groups" type="varchar" size="200" required="false" phpName="Groups"/>
+    <column name="api_key" type="varchar" size="255" required="false" phpName="Api_key"/>
+    <column name="input_date" type="timestamp" required="false" phpName="Input_date"/>
+    <column name="last_update" type="timestamp" required="false" phpName="Last_update"/>
+  </table>
+
+  <table name="mst_author" phpName="Author" namespace="Masterfile\Author">
+    <column name="author_id" type="integer" primaryKey="true" autoIncrement="true"/>
+    <column name="author_name" type="varchar" size="100" required="true" phpName="Author_name"/>
+  </table>
+
+  <table name="biblio_author" phpName="BiblioAuthor" isCrossRef="true" namespace="Masterfile\BiblioAuthor">
+    <column name="biblio_id" type="integer" primaryKey="true"/>
+    <column name="author_id" type="integer" primaryKey="true"/>
+    <foreign-key foreignTable="biblio">
+      <reference local="biblio_id" foreign="biblio_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_author">
+      <reference local="author_id" foreign="author_id"/>
+    </foreign-key>
+  </table>
+
+  <table name="mst_topic" phpName="Topic" namespace="Masterfile\Topic">
+    <column name="topic_id" type="integer" primaryKey="true" autoIncrement="true"/>
+    <column name="topic" type="varchar" size="50" required="true" phpName="Topic"/>
+  </table>
+  <table name="biblio_topic" phpName="BiblioTopic" isCrossRef="true" namespace="Masterfile\BiblioTopic">
+    <column name="biblio_id" type="integer" primaryKey="true"/>
+    <column name="topic_id" type="integer" primaryKey="true"/>
+    <column name="level" type="integer" size="1" required="false" phpName="Level"/>
+    <foreign-key foreignTable="biblio">
+      <reference local="biblio_id" foreign="biblio_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_topic">
+      <reference local="topic_id" foreign="topic_id"/>
+    </foreign-key>
+  </table>
+
+  <table name="item" phpName="Item" namespace="Bibliography\Item">
+    <column name="item_id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+    <column name="item_code" type="varchar" size="20" required="true" phpName="Item_code"/>
+    <column name="biblio_id" type="integer" required="true"/>
+    <column name="call_number" type="varchar" size="50" required="false" phpName="Call_number"/>
+    <column name="coll_type_id" type="integer" size="3" required="false" phpName="Coll_type_id"/>
+    <column name="inventory_code" type="varchar" size="200" required="false" phpName="Inventory_code"/>
+    <column name="received_date" type="date" required="false" phpName="Received_date"/>
+    <column name="supplier_id" type="integer" required="false" />
+    <column name="order_no" type="varchar" size="20" required="false" phpName="Order_no"/>
+    <column name="location_id" type="varchar" size="3" required="false"/>
+    <column name="order_date" type="date" required="false" phpName="Order_date"/>
+    <column name="item_status_id" type="char" size="3" required="false"/>
+    <column name="site" type="varchar" size="50" required="false" phpName="Site"/>
+    <column name="source" type="integer" size="1" required="false" phpName="Source"/>
+    <column name="invoice" type="varchar" size="20" required="false" phpName="Invoice"/>
+    <column name="price" type="integer" required="false" phpName="Price"/>
+    <column name="price_currency" type="varchar" size="10" required="false" phpName="Price_currency"/>
+    <column name="invoice_date" type="date" required="false" phpName="Invoice_date"/>
+    <column name="input_date" type="timestamp" required="false" phpName="Input_date"/>
+    <column name="last_update" type="timestamp" required="false" phpName="Last_update"/>
+    <column name="uid" type="integer" required="false"/>
+    <unique>
+      <unique-column name="item_code" />
+    </unique>
+    <foreign-key foreignTable="biblio" phpName="Biblio" refPhpName="Item">
+      <reference local="biblio_id" foreign="biblio_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="user" phpName="User" refPhpName="Item">
+      <reference local="uid" foreign="user_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="mst_coll_type" phpName="Colltype" refPhpName="Item">
+      <reference local="coll_type_id" foreign="coll_type_id"/>
+    </foreign-key>
+  </table>
+
+  <table name="mst_coll_type" phpName="Colltype" namespace="Masterfile\Colltype">
+    <column name="coll_type_id" type="integer" primaryKey="true" autoIncrement="true"/>
+    <column name="coll_type_name" type="varchar" size="30" required="true" phpName="Coll_type_name"/>
+    <column name="input_date" type="timestamp" required="false" phpName="Input_date"/>
+    <column name="last_update" type="timestamp" required="false" phpName="Last_update"/>
+  </table>
+
+
+</database>
